@@ -10,7 +10,6 @@ import eu.pb4.common.economy.api.EconomyTransaction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 
 import java.util.UUID;
 

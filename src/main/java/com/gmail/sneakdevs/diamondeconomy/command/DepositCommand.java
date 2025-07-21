@@ -73,7 +73,7 @@ public class DepositCommand {
     public static int depositHandCommand(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
         DatabaseManager dm = DiamondUtils.getDatabaseManager();
         ServerPlayer player = ctx.getSource().getPlayerOrException();
-        ItemStack hand = player.getInventory().getSelected();
+        ItemStack hand = player.getInventory().getSelectedItem();
 
         // Find out which currency item is in Hand
         int i;
