@@ -28,6 +28,9 @@ Placeholders:
 - %diamondeconomy:balance_from_string_uuid%
 
 
-Downloads:
+Download:
+- See GitHub Releases for compiled jars from this repository
+
+Otherwise, the official downloads are located here:
 - https://www.curseforge.com/minecraft/mc-mods/diamond-economy
 - https://modrinth.com/mod/diamond-economy
