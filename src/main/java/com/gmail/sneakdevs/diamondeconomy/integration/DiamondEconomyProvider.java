@@ -28,12 +28,12 @@ public class DiamondEconomyProvider implements EconomyProvider {
     public @Nullable EconomyAccount getAccount(MinecraftServer server, com.mojang.authlib.GameProfile profile, String accountId) {
         if (!accountId.equals(DiamondAccount.ID.getPath())) return null;
 
-        return new DiamondAccount(profile.getId());
+        return new DiamondAccount(profile.id());
     }
 
     @Override
     public Collection<EconomyAccount> getAccounts(MinecraftServer server, com.mojang.authlib.GameProfile profile) {
-        return Collections.singleton(new DiamondAccount(profile.getId()));
+        return Collections.singleton(new DiamondAccount(profile.id()));
     }
 
     @Override

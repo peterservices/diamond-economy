@@ -8,13 +8,13 @@ import eu.pb4.common.economy.api.EconomyCurrency;
 import eu.pb4.common.economy.api.EconomyProvider;
 import eu.pb4.common.economy.api.EconomyTransaction;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.UUID;
 
 public class DiamondAccount implements EconomyAccount {
-    public static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(DiamondEconomy.MODID, "deaccount");
+    public static final Identifier ID = Identifier.fromNamespaceAndPath(DiamondEconomy.MODID, "deaccount");
     private final UUID uuid;
     private final String uuidString;
 
@@ -34,7 +34,7 @@ public class DiamondAccount implements EconomyAccount {
     }
 
     @Override
-    public ResourceLocation id() {
+    public Identifier id() {
         return ID;
     }
 

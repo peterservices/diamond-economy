@@ -5,12 +5,12 @@ import com.gmail.sneakdevs.diamondeconomy.config.DiamondEconomyConfig;
 import eu.pb4.common.economy.api.EconomyCurrency;
 import eu.pb4.common.economy.api.EconomyProvider;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 
 public class DiamondCurrency implements EconomyCurrency {
     public static final DiamondCurrency INSTANCE = new DiamondCurrency();
-    public static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(DiamondEconomy.MODID, "diamonds");
+    public static final Identifier ID = Identifier.fromNamespaceAndPath(DiamondEconomy.MODID, "diamonds");
 
     @Override
     public Component name() {
@@ -18,7 +18,7 @@ public class DiamondCurrency implements EconomyCurrency {
     }
 
     @Override
-    public ResourceLocation id() {
+    public Identifier id() {
         return ID;
     }
 

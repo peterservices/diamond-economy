@@ -6,7 +6,7 @@ import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Comment;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Component;
@@ -68,11 +68,11 @@ public class DiamondEconomyConfig implements ConfigData {
     public int opCommandsPermissionLevel = 4;
 
     public static Item getCurrency(int num) {
-        return BuiltInRegistries.ITEM.get(ResourceLocation.tryParse(DiamondEconomyConfig.getInstance().currencies[num])).orElse(null).value();
+        return BuiltInRegistries.ITEM.get(Identifier.tryParse(DiamondEconomyConfig.getInstance().currencies[num])).orElse(null).value();
     }
 
     public static String getCurrencyName(int num) {
-        return BuiltInRegistries.ITEM.get(ResourceLocation.tryParse(DiamondEconomyConfig.getInstance().currencies[num])).orElse(null).value().getName().getString();
+        return BuiltInRegistries.ITEM.get(Identifier.tryParse(DiamondEconomyConfig.getInstance().currencies[num])).orElse(null).value().getName().getString();
     }
 
     public static int[] getCurrencyValues() {
