@@ -12,13 +12,15 @@ import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.permissions.Permission;
+import net.minecraft.server.permissions.PermissionLevel;
 
 import java.util.Collection;
 
 public class ModifyCommand {
     public static LiteralArgumentBuilder<CommandSourceStack> buildCommand(){
         return Commands.literal(DiamondEconomyConfig.getInstance().modifyCommandName)
-                .requires((permission) -> permission.hasPermission(DiamondEconomyConfig.getInstance().opCommandsPermissionLevel))
+                .requires((permission) -> permission.permissions().hasPermission(new Permission.HasCommandLevel(PermissionLevel.byId(DiamondEconomyConfig.getInstance().opCommandsPermissionLevel))))
                 .then(
                         Commands.argument("players", EntityArgument.players())
                                 .then(
