@@ -34,42 +34,42 @@ public class DiamondEconomy implements ModInitializer {
     }
 
     public static void registerPlaceholders() {
-        Placeholders.register(Identifier.fromNamespaceAndPath(MODID, "rank_from_player"), (ctx, arg) -> {
+        Placeholders.registerServer(Identifier.fromNamespaceAndPath(MODID, "rank_from_player"), (ctx, arg) -> {
             if (ctx.hasPlayer()) {
                 return PlaceholderResult.value(Component.literal(DiamondUtils.getDatabaseManager().playerRank(ctx.player().getStringUUID()) + ""));
             } else {
                 return PlaceholderResult.invalid();
             }
         });
-        Placeholders.register(Identifier.fromNamespaceAndPath(MODID, "rank_from_string_uuid"), (ctx, arg) -> {
+        Placeholders.registerServer(Identifier.fromNamespaceAndPath(MODID, "rank_from_string_uuid"), (ctx, arg) -> {
             if (arg != null) {
                 return PlaceholderResult.value(Component.literal(DiamondUtils.getDatabaseManager().playerRank(arg) + ""));
             } else {
                 return PlaceholderResult.invalid();
             }
         });
-        Placeholders.register(Identifier.fromNamespaceAndPath(MODID, "balance_from_player"), (ctx, arg) -> {
+        Placeholders.registerServer(Identifier.fromNamespaceAndPath(MODID, "balance_from_player"), (ctx, arg) -> {
             if (ctx.hasPlayer()) {
                 return PlaceholderResult.value(Component.literal(DiamondUtils.getDatabaseManager().getBalanceFromUUID(ctx.player().getStringUUID()) + ""));
             } else {
                 return PlaceholderResult.invalid();
             }
         });
-        Placeholders.register(Identifier.fromNamespaceAndPath(MODID, "balance_from_string_uuid"), (ctx, arg) -> {
+        Placeholders.registerServer(Identifier.fromNamespaceAndPath(MODID, "balance_from_string_uuid"), (ctx, arg) -> {
             if (arg != null) {
                 return PlaceholderResult.value(Component.literal(DiamondUtils.getDatabaseManager().getBalanceFromUUID(arg) + ""));
             } else {
                 return PlaceholderResult.invalid();
             }
         });
-        Placeholders.register(Identifier.fromNamespaceAndPath(MODID, "balance_from_name"), (ctx, arg) -> {
+        Placeholders.registerServer(Identifier.fromNamespaceAndPath(MODID, "balance_from_name"), (ctx, arg) -> {
             if (arg != null) {
                 return PlaceholderResult.value(Component.literal(DiamondUtils.getDatabaseManager().getBalanceFromName(arg) + ""));
             } else {
                 return PlaceholderResult.invalid();
             }
         });
-        Placeholders.register(Identifier.fromNamespaceAndPath(MODID, "player_from_rank"), (ctx, arg) -> {
+        Placeholders.registerServer(Identifier.fromNamespaceAndPath(MODID, "player_from_rank"), (ctx, arg) -> {
             if (arg != null) {
                 return PlaceholderResult.value(Component.literal(DiamondUtils.getDatabaseManager().rank(Integer.parseInt(arg))));
             } else {

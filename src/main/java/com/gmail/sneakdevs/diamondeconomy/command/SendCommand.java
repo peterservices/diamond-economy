@@ -32,7 +32,7 @@ public class SendCommand {
         long newValue = dm.getBalanceFromUUID(player.getStringUUID()) + amount;
         if (newValue < Integer.MAX_VALUE && dm.changeBalance(player1.getStringUUID(), -amount)) {
             dm.changeBalance(player.getStringUUID(), amount);
-            player.displayClientMessage(Component.literal("You received $" + amount + " from " + player1.getName().getString()), false);
+            player.sendSystemMessage(Component.literal("You received $" + amount + " from " + player1.getName().getString()), false);
             ctx.getSource().sendSuccess(() -> Component.literal("Sent $" + amount + " to " + player.getName().getString()), false);
         } else {
             ctx.getSource().sendSuccess(() -> Component.literal("Failed because that would go over the max value"), false);

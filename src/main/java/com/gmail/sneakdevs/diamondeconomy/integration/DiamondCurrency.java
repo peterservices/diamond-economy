@@ -8,6 +8,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 
+import java.math.BigInteger;
+
 public class DiamondCurrency implements EconomyCurrency {
     public static final DiamondCurrency INSTANCE = new DiamondCurrency();
     public static final Identifier ID = Identifier.fromNamespaceAndPath(DiamondEconomy.MODID, "diamonds");
@@ -23,19 +25,19 @@ public class DiamondCurrency implements EconomyCurrency {
     }
 
     @Override
-    public String formatValue(long value, boolean precise) {
+    public String formatValue(BigInteger value, boolean precise) {
         return "$" + value;
     }
 
     @Override
-    public long parseValue(String value) throws NumberFormatException {
+    public BigInteger parseValue(String value) throws NumberFormatException {
         if (value.startsWith("$")) {
             value = value.substring(1);
         } else {
-            return 0;
+            return BigInteger.ZERO;
         }
 
-        return Long.parseLong(value);
+        return new BigInteger(value);
     }
 
     @Override

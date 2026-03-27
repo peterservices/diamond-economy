@@ -72,7 +72,7 @@ public class DiamondEconomyConfig implements ConfigData {
     }
 
     public static String getCurrencyName(int num) {
-        return BuiltInRegistries.ITEM.get(Identifier.tryParse(DiamondEconomyConfig.getInstance().currencies[num])).orElse(null).value().getName().getString();
+        return BuiltInRegistries.ITEM.get(Identifier.tryParse(DiamondEconomyConfig.getInstance().currencies[num])).orElse(null).value().getDefaultInstance().getHoverName().getString();
     }
 
     public static int[] getCurrencyValues() {

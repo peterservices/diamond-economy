@@ -11,6 +11,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 
+import java.math.BigInteger;
 import java.util.UUID;
 
 public class DiamondAccount implements EconomyAccount {
@@ -39,21 +40,21 @@ public class DiamondAccount implements EconomyAccount {
     }
 
     @Override
-    public long balance() {
-        return DiamondUtils.getDatabaseManager().getBalanceFromUUID(uuidString);
+    public BigInteger balance() {
+        return BigInteger.valueOf(DiamondUtils.getDatabaseManager().getBalanceFromUUID(uuidString));
     }
 
     @Override
-    public EconomyTransaction canIncreaseBalance(long value) {
-        int currentBal = DiamondUtils.getDatabaseManager().getBalanceFromUUID(uuidString);
-        long newBal = (long)currentBal+value;
-        if (newBal >= Integer.MAX_VALUE) {
+    public EconomyTransaction canIncreaseBalance(BigInteger value) {
+        BigInteger currentBal = BigInteger.valueOf(DiamondUtils.getDatabaseManager().getBalanceFromUUID(uuidString));
+        BigInteger newBal = currentBal.add(value);
+        if (newBal.compareTo(BigInteger.valueOf(Integer.MAX_VALUE)) >= 0) {
             return new EconomyTransaction.Simple(
                     false,
                     Component.literal("Integer overflow ($" + newBal + " > $" + Integer.MAX_VALUE + ")"),
                     currentBal,
                     currentBal,
-                    0,
+                    BigInteger.ZERO,
                     this
             );
         }
@@ -69,16 +70,16 @@ public class DiamondAccount implements EconomyAccount {
     }
 
     @Override
-    public EconomyTransaction canDecreaseBalance(long value) {
-        int currentBal = DiamondUtils.getDatabaseManager().getBalanceFromUUID(uuidString);
-        long newBal = (long)currentBal-value;
-        if (newBal < 0) {
+    public EconomyTransaction canDecreaseBalance(BigInteger value) {
+        BigInteger currentBal = BigInteger.valueOf(DiamondUtils.getDatabaseManager().getBalanceFromUUID(uuidString));
+        BigInteger newBal = currentBal.subtract(value);
+        if (newBal.compareTo(BigInteger.ZERO) < 0) {
             return new EconomyTransaction.Simple(
                     false,
                     Component.literal("Not enough money to take $" + value + "from your account of $" + currentBal),
                     currentBal,
                     currentBal,
-                    0,
+                    BigInteger.ZERO,
                     this
             );
         }
@@ -94,8 +95,8 @@ public class DiamondAccount implements EconomyAccount {
     }
 
     @Override
-    public void setBalance(long value) {
-        DiamondUtils.getDatabaseManager().setBalance(uuidString, Math.toIntExact(value));
+    public void setBalance(BigInteger value) {
+        DiamondUtils.getDatabaseManager().setBalance(uuidString, value.intValue());
     }
 
     @Override
