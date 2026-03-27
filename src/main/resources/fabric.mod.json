@@ -25,8 +25,7 @@
     "diamondeconomy.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.7.4",
-    "fabric": "*",
-    "cloth-config2": ">=6.2.57"
+    "fabricloader": ">=0.18.0",
+    "cloth-config2": ">=26.1.154"
   }
 }
