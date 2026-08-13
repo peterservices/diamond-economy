@@ -33,6 +33,8 @@ jobs:
 
       - name: Append -dev to end of artifact names
         run: |
+          shopt -s extglob
+
           file=$(echo build/libs/!(*-sources).jar)
           base="${file%.jar}"
           ext="${file##*.}"
