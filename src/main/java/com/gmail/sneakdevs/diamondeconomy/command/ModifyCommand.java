@@ -48,16 +48,16 @@ public class ModifyCommand {
     }
 
     public static int modifyCommand(CommandContext<CommandSourceStack> ctx, Collection<ServerPlayer> players, int amount) {
-        players.forEach(player -> ctx.getSource().sendSuccess(() -> Component.literal((DiamondUtils.getDatabaseManager().changeBalance(player.getStringUUID(), amount)) ? ("Modified " + players.size() + " players money by $" + amount) : ("That would go out of the valid money range for " + player.getName().getString())), true));
+        players.forEach(player -> ctx.getSource().sendSuccess(() -> Component.literal((DiamondUtils.getDatabaseManager().changeBalance(player.getStringUUID(), amount)) ? ("Modified " + players.size() + " players money by " + DiamondEconomyConfig.formatCurrency(amount)) : ("That would go out of the valid money range for " + player.getName().getString())), true));
         return players.size();
     }
 
     public static int modifyCommand(CommandContext<CommandSourceStack> ctx, int amount, boolean shouldModifyAll) throws CommandSyntaxException {
         if (shouldModifyAll) {
             DiamondUtils.getDatabaseManager().changeAllBalance(amount);
-            ctx.getSource().sendSuccess(() -> Component.literal(("Modified everyones account by $" + amount)), true);
+            ctx.getSource().sendSuccess(() -> Component.literal(("Modified everyones account by " + DiamondEconomyConfig.formatCurrency(amount))), true);
         } else {
-            String output = (DiamondUtils.getDatabaseManager().changeBalance(ctx.getSource().getPlayerOrException().getStringUUID(), amount)) ? ("Modified your money by $" + amount) : ("That would go out of your valid money range");
+            String output = (DiamondUtils.getDatabaseManager().changeBalance(ctx.getSource().getPlayerOrException().getStringUUID(), amount)) ? ("Modified your money by " + DiamondEconomyConfig.formatCurrency(amount)) : ("That would go out of your valid money range");
             ctx.getSource().sendSuccess(() -> Component.literal(output), true);
         }
         return 1;

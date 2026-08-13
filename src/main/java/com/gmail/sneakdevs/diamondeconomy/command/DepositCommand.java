@@ -52,12 +52,7 @@ public class DepositCommand {
         }
         if (dm.changeBalance(player.getStringUUID(), currencyCount)) {
             int finalCurrencyCount = currencyCount;
-            ctx.getSource().sendSuccess(() ->
-                            Component.empty()
-                                    .append("Added ")
-                                    .append(DiamondEconomyConfig.currencyToLiteral(finalCurrencyCount))
-                                    .append(" to your account")
-            ,false);
+            ctx.getSource().sendSuccess(() -> Component.literal("Added "+ DiamondEconomyConfig.formatCurrency(finalCurrencyCount) + " to your account"),true);
             return 1;
         } else {
             DiamondUtils.dropItem(currencyCount, player);
@@ -97,12 +92,7 @@ public class DepositCommand {
         // add balance to account
         final int currencyCount = hand.getCount() * DiamondEconomyConfig.getCurrencyValues()[i];
         if (dm.changeBalance(player.getStringUUID(), currencyCount)) {
-            ctx.getSource().sendSuccess(() ->
-                    Component.empty()
-                            .append("Added ")
-                            .append(DiamondEconomyConfig.currencyToLiteral(currencyCount))
-                            .append(" to your account")
-            , false);
+            ctx.getSource().sendSuccess(() -> Component.literal("Added " + DiamondEconomyConfig.formatCurrency(currencyCount) + " to your account"), true);
             player.getInventory().removeFromSelected(true); // remove whole stack
             return currencyCount;
         } else {

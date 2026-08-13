@@ -186,7 +186,7 @@ public class MySQLDatabaseManager implements DatabaseManager {
         try (Connection conn = this.connect(); Statement stmt  = conn.createStatement(); ResultSet rs    = stmt.executeQuery(sql)){
             while (rs.next() && (repeats < 10 || playerRank == 0)) {
                 if (repeats / 10 + 1 == page) {
-                    rankings = rankings.concat(rs.getRow() + ") " + rs.getString("name") + ": $" + rs.getInt("money") + "\n");
+                    rankings = rankings.concat(rs.getRow() + ") " + rs.getString("name") + ": " + DiamondEconomyConfig.formatCurrency(rs.getInt("money")) + "\n");
                     i++;
                 }
                 repeats++;
