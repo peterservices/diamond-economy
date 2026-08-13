@@ -2,19 +2,14 @@
   "schemaVersion": 1,
   "id": "diamondeconomy",
   "version": "${version}",
-
   "name": "Diamond Economy",
-  "description": "Serverside economy mod with diamonds",
+  "description": "Fabric vanilla friendly Minecraft mod that adds a diamond based economy.",
   "authors": [
-    "IAmSneak"
+    "IAmSneak (Original Creator)",
+    "Ticataco"
   ],
-  "contact": {
-    "homepage": "",
-    "sources": ""
-  },
-
+  "contact": {},
   "license": "MIT",
-
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -25,7 +20,8 @@
     "diamondeconomy.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.18.4",
-    "cloth-config2": ">=26.2.155"
+    "fabricloader": ">=${fabric_loader_minimum}",
+    "fabric-api": "*",
+    "cloth-config2": "~${cloth_config_version}"
   }
 }

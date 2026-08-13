@@ -36,9 +36,15 @@ dependencies {
 
 processResources {
     inputs.property "version", project.version
+    inputs.property "fabric_loader_minimum", rootProject.fabric_loader_minimum
+    inputs.property "cloth_config_version", rootProject.cloth_config_version
 
     filesMatching("fabric.mod.json") {
-        expand "version": project.version
+        def toExpand = [:]
+        inputs.properties.forEach { key, value ->
+            toExpand["$key"] = "$value"
+        }
+        expand toExpand
     }
 }
 
