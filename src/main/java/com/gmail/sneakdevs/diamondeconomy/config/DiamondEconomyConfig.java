@@ -8,9 +8,6 @@ import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Comment;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
-import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Style;
 
 @Config(name = DiamondEconomy.MODID)
 public class DiamondEconomyConfig implements ConfigData {
@@ -83,10 +80,8 @@ public class DiamondEconomyConfig implements ConfigData {
         return AutoConfig.getConfigHolder(DiamondEconomyConfig.class).getConfig();
     }
 
-    /* This is implemented with Component such that it can be extended to used custom styles, e.g. via config */
-    public static MutableComponent currencyToLiteral(int c) {
+    public static String formatCurrency(int c) {
         DiamondEconomyConfig inst = DiamondEconomyConfig.getInstance();
-        String currencyStr = inst.currencySymbolPrefix + c + inst.currencySymbolSuffix;
-        return Component.literal(currencyStr).setStyle(Style.EMPTY);
+        return inst.currencySymbolPrefix + c + inst.currencySymbolSuffix;
     }
 }
