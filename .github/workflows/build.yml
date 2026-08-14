@@ -5,7 +5,7 @@ on:
     branches:
       - "**"
     tags:
-      - "v*.*.*"
+      - "*.*.*"
     paths:
       - ".github/workflows/build.yml"
       - "**.gradle"
