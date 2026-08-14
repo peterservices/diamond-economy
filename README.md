@@ -16,7 +16,7 @@ Operator only subcommands:
 
 - modify [players] [int] - modifies [players] money by $[int]
 
-- take [players] [int] - takes $[int] from [players]
+- set [players] [int] - sets [players] money to $[int]
 
 
 Placeholders:
