@@ -29,10 +29,10 @@ public class WithdrawCommand {
         DatabaseManager dm = DiamondUtils.getDatabaseManager();
         if (dm.changeBalance(player.getStringUUID(), -amount)) {
             ctx.getSource().sendSuccess(() -> Component.literal("Withdrew " + DiamondEconomyConfig.formatCurrency(amount - DiamondUtils.dropItem(amount, player))), true);
+            return 1;
         } else {
-            ctx.getSource().sendSuccess(() -> Component.literal("You have less than " + DiamondEconomyConfig.formatCurrency(amount)), false);
+            ctx.getSource().sendFailure(Component.literal("You have less than " + DiamondEconomyConfig.formatCurrency(amount)));
+            return 0;
         }
-        return 1;
     }
-
 }

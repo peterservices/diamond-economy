@@ -34,9 +34,10 @@ public class SendCommand {
             dm.changeBalance(player.getStringUUID(), amount);
             player.sendSystemMessage(Component.literal("You received " + DiamondEconomyConfig.formatCurrency(amount) + " from " + player1.getName().getString()), false);
             ctx.getSource().sendSuccess(() -> Component.literal("Sent " + DiamondEconomyConfig.formatCurrency(amount) + " to " + player.getName().getString()), true);
+            return 1;
         } else {
-            ctx.getSource().sendSuccess(() -> Component.literal("Failed because that would go over the max value"), false);
+            ctx.getSource().sendFailure(Component.literal("Failed because that would go over the max value"));
+            return 0;
         }
-        return 1;
     }
 }

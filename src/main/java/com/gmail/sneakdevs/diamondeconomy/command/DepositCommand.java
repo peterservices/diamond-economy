@@ -53,11 +53,11 @@ public class DepositCommand {
         if (dm.changeBalance(player.getStringUUID(), currencyCount)) {
             int finalCurrencyCount = currencyCount;
             ctx.getSource().sendSuccess(() -> Component.literal("Added "+ DiamondEconomyConfig.formatCurrency(finalCurrencyCount) + " to your account"),true);
-            return 1;
+            return currencyCount;
         } else {
             DiamondUtils.dropItem(currencyCount, player);
             ctx.getSource().sendFailure(MAX_BALANCE_ERROR);
-            return -1;
+            return 0;
         }
     }
 
@@ -86,7 +86,7 @@ public class DepositCommand {
                                         .withStyle(Style.EMPTY.withItalic(true)))
                         .append("command.")
             );
-            return -1;
+            return 0;
         }
 
         // add balance to account
@@ -97,7 +97,7 @@ public class DepositCommand {
             return currencyCount;
         } else {
             ctx.getSource().sendFailure(MAX_BALANCE_ERROR);
-            return -1;
+            return 0;
         }
     }
 }

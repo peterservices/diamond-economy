@@ -35,6 +35,6 @@ public class BalanceCommand {
         DatabaseManager dm = DiamondUtils.getDatabaseManager();
         int bal = dm.getBalanceFromName(player);
         ctx.getSource().sendSuccess(() -> Component.literal((bal > -1) ? (player + " has " + DiamondEconomyConfig.formatCurrency(bal)) : ("No account was found for player with the name \"" + player + "\"")), false);
-        return 1;
+        return ((bal > -1) ? bal : 0);
     }
 }
