@@ -5,6 +5,7 @@ import com.gmail.sneakdevs.diamondeconomy.sql.DatabaseManager;
 import com.gmail.sneakdevs.diamondeconomy.sql.MySQLDatabaseManager;
 import com.gmail.sneakdevs.diamondeconomy.sql.SQLiteDatabaseManager;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.Prediction;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -34,13 +35,13 @@ public class DiamondUtils {
                 Item curr = DiamondEconomyConfig.getCurrency(i);
 
                 while (amount >= val * currSize) {
-                    ItemEntity itemEntity = player.drop(new ItemStack(curr, currSize), true);
+                    ItemEntity itemEntity = player.drop(new ItemStack(curr, currSize), true, Prediction.SERVER_ONLY);
                     itemEntity.setNoPickUpDelay();
                     amount -= val * currSize;
                 }
 
                 if (amount >= val) {
-                    ItemEntity itemEntity = player.drop(new ItemStack(curr, amount / val), true);
+                    ItemEntity itemEntity = player.drop(new ItemStack(curr, amount / val), true, Prediction.SERVER_ONLY);
                     itemEntity.setNoPickUpDelay();
                     amount -= amount / val * val;
                 }
@@ -54,13 +55,13 @@ public class DiamondUtils {
             Item curr = DiamondEconomyConfig.getCurrency(0);
 
             while (amount >= val * currSize) {
-                ItemEntity itemEntity = player.drop(new ItemStack(curr, currSize), true);
+                ItemEntity itemEntity = player.drop(new ItemStack(curr, currSize), true, Prediction.SERVER_ONLY);
                 itemEntity.setNoPickUpDelay();
                 amount -= val * currSize;
             }
 
             if (amount >= val) {
-                ItemEntity itemEntity = player.drop(new ItemStack(curr, amount / val), true);
+                ItemEntity itemEntity = player.drop(new ItemStack(curr, amount / val), true, Prediction.SERVER_ONLY);
                 itemEntity.setNoPickUpDelay();
                 amount -= amount / val * val;
             }
